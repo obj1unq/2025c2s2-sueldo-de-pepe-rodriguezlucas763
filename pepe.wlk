@@ -48,11 +48,11 @@ object bonoPresentismo {
 
   method normal(cantidadDeFaltas) {
     if (cantidadDeFaltas <= 1) {
-        return normal - normal * 0.5 *cantidadDeFaltas
+        return normal - normal * 0.5 * cantidadDeFaltas
     }
     else{
         return 0
     }
   }
-  
+
 }
