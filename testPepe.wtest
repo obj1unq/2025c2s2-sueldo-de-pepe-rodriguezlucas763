@@ -2,9 +2,32 @@ import pepe.*
 
 describe "Sueldo Pepe" {
 	
-	test "Test 1" {
-		//TODO: Implementame
+	test "Pepe se inicializa como cadete y tiene un sueldo neto de 20000" {
+		assert.that(pepe.categoria()  == cadete)
+		assert.that(pepe.sueldoNeto() == 20000)
 	}
-
-	
+	test "pepe es cadete, tiene el bono resultado de monto fijo, y bono presentismo normal. Simular que faltó 3 días.
+		  Debería tener $20800 de sueldo." {
+			pepe.recibirCategoria(cadete)
+			pepe.recibirBono(bonoPresentismo.normal(3), bonoResultados.montoFijo())
+			assert.that(pepe.sueldo() == 20800)
+		  }
+	test "Si pepe es gerente, tiene el bono resultado por porcentaje, y bono de presentismo nulo. 
+		  El sueldo debe dar $16500." {
+			pepe.recibirCategoria(gerente)
+			pepe.recibirBono(bonoPresentismo.nulo(), bonoResultados.porcentaje(pepe.sueldoNeto()))
+			assert.that(pepe.sueldo() == 16500)
+	}
+	test "Si pepe es cadete,  tiene bono de resultados por porcentaje, bono por presentismo normal, nunca faltó. 
+	      Debería tener $24000 de sueldo." {
+			pepe.recibirCategoria(cadete)
+			pepe.recibirBono(bonoPresentismo.normal(0), bonoResultados.porcentaje(pepe.sueldoNeto()))
+			assert.that(pepe.sueldo() == 24000)
+	}
+	test "Si pepe es cadete, tiene bono de resultados por porcentaje, bono por presentismo normal, falto 1 día. 
+	      Debería tener $23000 de sueldo.ption" {
+			pepe.recibirCategoria(cadete)
+			pepe.recibirBono(bonoPresentismo.normal(1), bonoResultados.porcentaje(pepe.sueldoNeto()))
+			assert.that(pepe.sueldo() == 23000)
+	}
 }
