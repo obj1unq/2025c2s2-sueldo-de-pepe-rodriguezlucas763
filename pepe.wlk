@@ -1,12 +1,20 @@
 object pepe {
-	var sueldoNeto   = 0
-    var bonoRecibido = 0
+    var categoria    = cadete
+ 	  var sueldoNeto   = categoria.sueldoNeto()
+    var bonoRecibido = 0 
 
+    method sueldoNeto() {
+      return sueldoNeto
+    }
+    method categoria() {
+      return categoria
+    }
     method sueldo() {
       return sueldoNeto + bonoRecibido
     }
-    method recibirCategoria(categoria) {
-      sueldoNeto = categoria.sueldoNeto()
+    method recibirCategoria(_categoria) {
+      sueldoNeto = _categoria.sueldoNeto()
+      categoria = _categoria
     }
     method recibirBono(bonoPresentismo, bonoResultados) {
       bonoRecibido = bonoPresentismo + bonoResultados
@@ -25,7 +33,7 @@ object cadete {
   method sueldoNeto() = sueldoNeto
 }
 
-object bonoResutados {
+object bonoResultados {
   const montoFijo  = 800
   const nulo       = 0
 
@@ -43,7 +51,7 @@ object bonoResutados {
 object bonoPresentismo {
   const normal   = 2000
   const ajuste   = 100
-  var demagogico = 500
+  const demagogico = 500
   const nulo     = 0
 
   method normal(cantidadDeFaltas) {
@@ -54,5 +62,23 @@ object bonoPresentismo {
         return 0
     }
   }
-
+  method ajuste(cantidadDeFaltas) {
+    if (cantidadDeFaltas == 0) {
+      return ajuste
+    }
+    else {
+      return 0
+    }
+  }
+  method demagogico(sueldoNeto) {
+    if (sueldoNeto < 18000) {
+      return demagogico
+    }
+    else {
+      return 300
+    }
+  }
+  method nulo() {
+    return nulo
+  }
 }
